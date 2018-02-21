@@ -1,0 +1,109 @@
+<resources>
+    <string name="app_name">Ancaps</string>
+    <string name="action_settings">Settings</string>
+    <string name="accessToken" translatable="false">
+        pk.eyJ1IjoiY2phczdtejBqNG1iZTJxcGRwOGtqeHVqMyIsImEiOiJjamFzN24xdnU0bWJoMnFwZHZ5aHp1cW91In0.0VCNH6V2QtoAu9Ik9_MvlQ
+    </string>
+    <string name="parse_server_url">https://ancaps.herokuapp.com/parse</string>
+    <string name="parse_app_id">ancaps</string>
+    <string name="title_activity_splash">Splash</string>
+    <string name="title_activity_login">Login</string>
+    <string name="btn_sign_in">SIGN IN</string>
+    <string name="btn_sign_up">SIGN UP</string>
+    <string name="btn_proceed">PROCEED</string>
+    <string name="btn_cancel">CANCEL</string>
+
+    <string name="recipient_name_hint">Enter Recipients Name</string>
+    <string name="recipient_phone_hint">Enter Recipients Phone</string>
+    <string name="sender_header">SENDERS INFO</string>
+    <string name="recipient_header">RECIPIENTS INFO</string>
+
+
+    <string name="password_hint">Enter Password</string>
+    <string name="username_hint">Enter Phone Number</string>
+    <string name="signup_text">SIGN UP HERE!</string>
+    <string name="have_an_account_sign_in">LOGIN</string>
+    <string name="nav_exit">EXIT</string>
+    <string name="transactions">TRANSACTIONS</string>
+
+    <string name="phone_hint">Enter Phone</string>
+    <string name="firstname_hint">Enter Firstname</string>
+    <string name="lastname_hint">Enter Lastname</string>
+    <string name="login">Login</string>
+
+    <string name="terms_and_cond">Terms and Conditions</string>
+
+    <string name="weight_hint">Enter Weight</string>
+
+    <string name="slide_1_title">Just Here!</string>
+    <string name="slide_1_desc">The easiest way to keep in touch with your Friends!</string>
+
+    <string name="slide_2_title">Lots of Sticker</string>
+    <string name="slide_2_desc">Sticker is best way then long text!</string>
+
+    <string name="slide_3_title">Group Discussion</string>
+    <string name="slide_3_desc">Make group of best buddies and have fun!</string>
+    <string name="title_activity_home">Home</string>
+
+    <!--Marker strings for DirectionsActivity activity-->
+    <string name="directions_activity_marker_options_origin_title">Origin</string>
+    <string name="directions_activity_marker_options_origin_snippet">Alhambra</string>
+    <string name="directions_activity_marker_options_destination_title">Destination</string>
+    <string name="directions_activity_marker_options_destination_snippet">Plaza del Triunfo</string>
+    <string name="directions_activity_toast_message">Route is %1$f meters long.</string>
+    <string name="title_activity_navigator">Navigator</string>
+    <string name="title_activity_sign_up">SignUp</string>
+
+    <string name="address">Enter Address</string>
+    <string name="termsandcondition">
+        You acknowledge and agree that you and Uber are each waiving the right to a trial by jury
+        or to participate as a plaintiff or class member in any purported class action or representative proceeding
+        Unless both you and Uber otherwise agree in writing any arbitration will be conducted onlyYou acknowledge and agree that you and Uber are each waiving the right to a trial by jury
+        or to participate as a plaintiff or class member in any purported class action or representative proceeding
+        Unless both you and Uber otherwise agree in writing any arbitration will be conducted only
+        You acknowledge and agree that you and Uber are each waiving the right to a trial by jury
+        or to participate as a plaintiff or class member in any purported class action or representative proceeding
+        Unless both you and Uber otherwise agree in writing any arbitration will be conducted only
+        You acknowledge and agree that you and Uber are each waiving the right to a trial by jury
+        or to participate as a plaintiff or class member in any purported class action or representative proceeding
+        Unless both you and Uber otherwise agree in writing any arbitration will be conducted only
+        You acknowledge and agree that you and Uber are each waiving the right to a trial by jury
+        or to participate as a plaintiff or class member in any purported class action or representative proceeding
+        Unless both you and Uber otherwise agree in writing any arbitration will be conducted only
+        You acknowledge and agree that you and Uber are each waiving the right to a trial by jury
+        or to participate as a plaintiff or class member in any purported class action or representative proceeding
+        Unless both you and Uber otherwise agree in writing any arbitration will be conducted only
+        You acknowledge and agree that you and Uber are each waiving the right to a trial by jury
+        or to participate as a plaintiff or class member in any purported class action or representative proceeding
+        Unless both you and Uber otherwise agree in writing any arbitration will be conducted only
+        You acknowledge and agree that you and Uber are each waiving the right to a trial by jury
+        or to participate as a plaintiff or class member in any purported class action or representative proceeding
+        Unless both you and Uber otherwise agree in writing any arbitration will be conducted only
+        You acknowledge and agree that you and Uber are each waiving the right to a trial by jury
+        or to participate as a plaintiff or class member in any purported class action or representative proceeding
+        Unless both you and Uber otherwise agree in writing any arbitration will be conducted only
+        You acknowledge and agree that you and Uber are each waiving the right to a trial by jury
+        or to participate as a plaintiff or class member in any purported class action or representative proceeding
+        Unless both you and Uber otherwise agree in writing any arbitration will be conducted only
+        You acknowledge and agree that you and Uber are each waiving the right to a trial by jury
+        or to participate as a plaintiff or class member in any purported class action or representative proceeding
+        Unless both you and Uber otherwise agree in writing any arbitration will be conducted only.\
+    </string>
+
+
+    <string-array name="weight">
+        <item>Select Weight</item>
+        <item>Albert</item>
+        <item>Nani</item>
+        <item>Ernest</item>
+    </string-array>
+    <string name="title_activity_drivers_menu">DriversMenu</string>
+    <string name="title_activity_driver_menu">DriverMenu</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_booking">Booking</string>
+    <string name="title_activity_transactions">Transactions</string>
+    <string name="title_activity_home_page">HomePage</string>
+
+</resources>
