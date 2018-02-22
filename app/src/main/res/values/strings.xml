@@ -105,5 +105,6 @@
     <string name="title_activity_booking">Booking</string>
     <string name="title_activity_transactions">Transactions</string>
     <string name="title_activity_home_page">HomePage</string>
+    <string name="title_activity_reset_password">ResetPassword</string>
 
 </resources>
