@@ -26,4 +26,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation 'com.github.castorflex.smoothprogressbar:library:1.1.0'
+    compile 'com.kaopiz:kprogresshud:1.1.0'
+    compile 'com.valdesekamdem.library:md-toast:0.9.0'
+    compile 'com.jpardogo.googleprogressbar:library:1.2.0'
 }
