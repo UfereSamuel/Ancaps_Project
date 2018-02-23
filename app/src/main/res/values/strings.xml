@@ -108,5 +108,6 @@
     <string name="title_activity_home_page">HomePage</string>
     <string name="rememberPassword">Keep me signed In</string>
     <string name="forgot_password">Forgot your password? Click here!</string>
+    <string name="title_activity_reset_password">ResetPassword</string>
 
 </resources>
