@@ -24,20 +24,7 @@ public class SessionManager {
     // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";
 
-    // User name (make variable public to access from outside)
-    public static final String KEY_NAME = "name";
 
-    // Phone number (make variable public to access from outside)
-    public static final String KEY_PHONE = "phone";
-
-    //last name
-    public static final String KEY_LASTNAME = "lName";
-
-    //tin number
-    public static final String KEY_TIN = "tin";
-
-    //email
-    public static final String KEY_EMAIL = "email";
 
 
     //Constructor
@@ -51,15 +38,6 @@ public class SessionManager {
         //storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
         //storing phone in sharedPreference
-        editor.putString(KEY_PHONE, phone);
-        //storing name in sharedPreference
-        editor.putString(KEY_NAME, name);
-        //storing last name in sharedPreference
-        editor.putString(KEY_LASTNAME, lName);
-        //storing tin number
-        editor.putString(KEY_TIN, tin);
-        //stooring email
-        editor.putString(KEY_EMAIL, email);
 
 
 
@@ -86,15 +64,6 @@ public class SessionManager {
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
         // phone number
-        user.put(KEY_PHONE, sharedPreferences.getString(KEY_PHONE, null));
-        // name
-        user.put(KEY_NAME, sharedPreferences.getString(KEY_NAME, null));
-        // last name
-        user.put(KEY_LASTNAME, sharedPreferences.getString(KEY_LASTNAME, null));
-        // email
-        user.put(KEY_EMAIL, sharedPreferences.getString(KEY_EMAIL, null));
-        // tin number
-        user.put(KEY_TIN, sharedPreferences.getString(KEY_TIN, null));
 
         return user;
     }
