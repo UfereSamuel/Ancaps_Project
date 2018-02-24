@@ -13,6 +13,7 @@
     <string name="btn_proceed">PROCEED</string>
     <string name="btn_cancel">CANCEL</string>
 
+    <string name="email_hint">Enter Email Address</string>
     <string name="recipient_name_hint">Enter Recipients Name</string>
     <string name="recipient_phone_hint">Enter Recipients Phone</string>
     <string name="sender_header">SENDERS INFO</string>
@@ -105,6 +106,8 @@
     <string name="title_activity_booking">Booking</string>
     <string name="title_activity_transactions">Transactions</string>
     <string name="title_activity_home_page">HomePage</string>
+    <string name="rememberPassword">Keep me signed In</string>
+    <string name="forgot_password">Forgot your password? Click here!</string>
     <string name="title_activity_reset_password">ResetPassword</string>
 
 </resources>
