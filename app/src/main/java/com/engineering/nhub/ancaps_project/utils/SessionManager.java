@@ -34,11 +34,10 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
-    public void createLoginSession(String phone, String name, String lName, String tin, String email) {
+    public void createLoginSession(String email, String password) {
         //storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
         //storing phone in sharedPreference
-
 
 
         // commit changes
