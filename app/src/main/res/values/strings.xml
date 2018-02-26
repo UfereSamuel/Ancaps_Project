@@ -4,8 +4,9 @@
     <string name="accessToken" translatable="false">
         pk.eyJ1IjoiY2phczdtejBqNG1iZTJxcGRwOGtqeHVqMyIsImEiOiJjamFzN24xdnU0bWJoMnFwZHZ5aHp1cW91In0.0VCNH6V2QtoAu9Ik9_MvlQ
     </string>
-    <string name="parse_server_url">https://ancaps.herokuapp.com/parse</string>
-    <string name="parse_app_id">ancaps</string>
+    <string name="parse_server_url">https://parseapi.back4app.com</string>
+    <string name="parse_app_id">6GmGmGvHQy4KJbynoiEC4ee9iEdJarhbDqipk2m4</string>
+    <string name="google_places_api_key">AIzaSyAF5xyv5pM0lvEI6S4FdmFeK6zowQLXA5E</string>
     <string name="title_activity_splash">Splash</string>
     <string name="title_activity_login">Login</string>
     <string name="btn_sign_in">SIGN IN</string>
@@ -13,6 +14,7 @@
     <string name="btn_proceed">PROCEED</string>
     <string name="btn_cancel">CANCEL</string>
 
+    <string name="email_hint">Enter Email Address</string>
     <string name="recipient_name_hint">Enter Recipients Name</string>
     <string name="recipient_phone_hint">Enter Recipients Phone</string>
     <string name="sender_header">SENDERS INFO</string>
@@ -22,7 +24,7 @@
     <string name="password_hint">Enter Password</string>
     <string name="username_hint">Enter Phone Number</string>
     <string name="signup_text">SIGN UP HERE!</string>
-    <string name="have_an_account_sign_in">LOGIN</string>
+    <string name="have_an_account_sign_in">Already registered? Login</string>
     <string name="nav_exit">EXIT</string>
     <string name="transactions">TRANSACTIONS</string>
 
@@ -54,7 +56,7 @@
     <string name="title_activity_navigator">Navigator</string>
     <string name="title_activity_sign_up">SignUp</string>
 
-    <string name="address">Enter Address</string>
+    <string name="company_name">Enter Company Name</string>
     <string name="termsandcondition">
         You acknowledge and agree that you and Uber are each waiving the right to a trial by jury
         or to participate as a plaintiff or class member in any purported class action or representative proceeding
@@ -105,6 +107,23 @@
     <string name="title_activity_booking">Booking</string>
     <string name="title_activity_transactions">Transactions</string>
     <string name="title_activity_home_page">HomePage</string>
+    <string name="rememberPassword">Keep me signed In</string>
+    <string name="forgot_password">Forgot your password? Click here!</string>
     <string name="title_activity_reset_password">ResetPassword</string>
+    <string name="reset_password">RESET PASSWORD</string>
+    <string name="enter_email">Enter Email</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <array name="menuOptions">
+        <item>Home</item>
+        <item>Transaction</item>
+        <item>History</item>
+        <item>Booking</item>
+        <item>About</item>
+    </array>
+    <string name="title_activity_maps">Map</string>
+
 
 </resources>

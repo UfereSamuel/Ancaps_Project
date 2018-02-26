@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="com.github.castorflex.smoothprogressbar:library-1.1.0">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.0.aar/6ca7ddd165627a3518ab447561b6d3e4/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.0.aar/6ca7ddd165627a3518ab447561b6d3e4/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.0.aar/2c1d53bae40c2d60ab506bff6723abd1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.0.aar/2c1d53bae40c2d60ab506bff6723abd1/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.castorflex.smoothprogressbar/library/1.1.0/b060c5bc7f71e7b043475fbee65b5cff35c599b0/library-1.1.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.5.1/caches/modules-2/files-2.1/com.github.castorflex.smoothprogressbar/library/1.1.0/b060c5bc7f71e7b043475fbee65b5cff35c599b0/library-1.1.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

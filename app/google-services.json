@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "797251788127",
+    "firebase_url": "https://ancapsproject.firebaseio.com",
+    "project_id": "ancapsproject",
+    "storage_bucket": "ancapsproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797251788127:android:c93e165fec2326cd",
+        "android_client_info": {
+          "package_name": "com.engineering.nhub.ancaps_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797251788127-4ddhtno3hbce48c570vtkdis2citqi7g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.engineering.nhub.ancaps_project",
+            "certificate_hash": "799c80c46129854e351a690cab1adf1bb89c3bcd"
+          }
+        },
+        {
+          "client_id": "797251788127-ff22m8evc8u51dmi6o5vv4eqav1q23hd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBklsMacOd2fMo2mmN5_ttI5W7BXTxUtws"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797251788127-ff22m8evc8u51dmi6o5vv4eqav1q23hd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
