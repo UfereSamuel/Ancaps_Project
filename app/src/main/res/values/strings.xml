@@ -4,8 +4,9 @@
     <string name="accessToken" translatable="false">
         pk.eyJ1IjoiY2phczdtejBqNG1iZTJxcGRwOGtqeHVqMyIsImEiOiJjamFzN24xdnU0bWJoMnFwZHZ5aHp1cW91In0.0VCNH6V2QtoAu9Ik9_MvlQ
     </string>
-    <string name="parse_server_url">https://ancaps.herokuapp.com/parse</string>
-    <string name="parse_app_id">ancaps</string>
+    <string name="parse_server_url">https://parseapi.back4app.com</string>
+    <string name="parse_app_id">6GmGmGvHQy4KJbynoiEC4ee9iEdJarhbDqipk2m4</string>
+    <string name="google_places_api_key">AIzaSyAF5xyv5pM0lvEI6S4FdmFeK6zowQLXA5E</string>
     <string name="title_activity_splash">Splash</string>
     <string name="title_activity_login">Login</string>
     <string name="btn_sign_in">SIGN IN</string>
@@ -111,5 +112,18 @@
     <string name="title_activity_reset_password">ResetPassword</string>
     <string name="reset_password">RESET PASSWORD</string>
     <string name="enter_email">Enter Email</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <array name="menuOptions">
+        <item>Home</item>
+        <item>Transaction</item>
+        <item>History</item>
+        <item>Booking</item>
+        <item>About</item>
+    </array>
+    <string name="title_activity_maps">Map</string>
+
 
 </resources>

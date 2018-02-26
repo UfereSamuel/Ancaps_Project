@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="com.github.castorflex.smoothprogressbar:library-1.1.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-4.5.1/caches/transforms-1/files-1.1/library-1.1.0.aar/57f7fe410d5d73e9741d114dee93284c/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-4.5.1/caches/transforms-1/files-1.1/library-1.1.0.aar/57f7fe410d5d73e9741d114dee93284c/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.0.aar/2c1d53bae40c2d60ab506bff6723abd1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/library-1.1.0.aar/2c1d53bae40c2d60ab506bff6723abd1/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
