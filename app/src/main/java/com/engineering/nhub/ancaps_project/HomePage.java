@@ -47,6 +47,7 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.AutocompleteFilter;
+
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
@@ -64,26 +65,23 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.parse.Parse;
 import com.valdesekamdem.library.mdtoast.MDToast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import Adapters.PlaceAutoCompleteAdapter;
-import Util.DataTransferInterface;
+
 import Util.LocationHelper;
 import Util.SessionManager;
 import Util.Utils;
 import cn.pedant.SweetAlert.SweetAlertDialog;
-import nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout;
-import nl.psdcompany.duonavigationdrawer.views.DuoMenuView;
-import nl.psdcompany.duonavigationdrawer.widgets.DuoDrawerToggle;
+
 
 public class HomePage extends AppCompatActivity implements OnMapReadyCallback,
-        GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks,
+        ActivityCompat.OnRequestPermissionsResultCallback,GoogleApiClient.OnConnectionFailedListener,
+        RoutingListener,GoogleApiClient.ConnectionCallbacks,LocationListener,
         NavigationView.OnNavigationItemSelectedListener {
 
     private LocationHelper locationHelper;
@@ -105,13 +103,14 @@ public class HomePage extends AppCompatActivity implements OnMapReadyCallback,
     private AutocompleteFilter filter;
     private  MarkerOptions destinationMarker;
     private  MarkerOptions originMarker;
-    private SweetAlertDialog pDialog, progressDialog;
+    //private SweetAlertDialog pDialog, progressDialog;
     //private CountAnimationTextView tvAmount;
     private Spinner  etWeight;
     private EditText etName;
     private EditText etPhone;
     private Typeface bold, regular;
     private AlertDialog alertDialog;
+    private SweetAlertDialog pDialog, progressDialog;
     private int amt, amount;
     //private ArrayList<PricingModel> loads;
   //  private PricingAdapter loadAdapter;
@@ -137,37 +136,31 @@ public class HomePage extends AppCompatActivity implements OnMapReadyCallback,
         //using intent to start service background job
         Intent locationService = new Intent(HomePage.this, LocationService.class);
         startService(locationService);
-                    //build the map
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().
-                findFragmentById(R.id.map);
 
-        if (mapFragment == null) {
-            mapFragment = SupportMapFragment.newInstance();
-            getSupportFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
-        }
-        mapFragment.getMapAsync(this);
+        sessionManager= new SessionManager(getApplicationContext());
 
-        mAdapter = new PlaceAutoCompleteAdapter(this, android.R.layout.simple_list_item_1,
-                mGoogleApiClient, BOUNDS_JAMAICA, filter);
+        user = sessionManager.getUserDetails();
+        userId = user.get(SessionManager.KEY_OBJECT_ID);
 
+        bold = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Bold.ttf");
+        regular = Typeface.createFromAsset(getAssets(), "fonts/Montserrat-Regular.ttf");
 
+        pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        pDialog.getProgressHelper().setBarColor(Color.parseColor("#03A9F4"));
+        pDialog.getProgressHelper().setSpinSpeed(1.0f);
+        pDialog.getProgressHelper().setBarWidth(6);
+        pDialog.setTitleText("Processing...");
+        pDialog.setCancelable(false);
 
-        locationHelper=new LocationHelper(this);
-        locationHelper.checkpermission();
-
-
-        if (locationHelper.checkPlayServices()) {
-            // Building the GoogleApi client
-            locationHelper.buildGoogleApiClient();
-        }
-
-        mLastLocation=locationHelper.getLocation();
-
-        center = CameraUpdateFactory.newLatLng(new LatLng(18.013610, -77.498803));
-        zoom = CameraUpdateFactory.zoomTo(16);
+        progressDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        progressDialog.getProgressHelper().setBarColor(Color.parseColor("#03A9F4"));
+        progressDialog.getProgressHelper().setSpinSpeed(1.0f);
+        progressDialog.getProgressHelper().setBarWidth(6);
+        progressDialog.setTitleText("Computing...");
+        progressDialog.setCancelable(false);
 
 
-
+        polylines = new ArrayList<>();
 
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -186,6 +179,213 @@ public class HomePage extends AppCompatActivity implements OnMapReadyCallback,
                 .build();
 
 
+        //build the map
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().
+                findFragmentById(R.id.map);
+
+        if (mapFragment == null) {
+            mapFragment = SupportMapFragment.newInstance();
+            getSupportFragmentManager().beginTransaction().replace(R.id.map, mapFragment).commit();
+        }
+        mapFragment.getMapAsync(this);
+
+        mAdapter = new PlaceAutoCompleteAdapter(this, android.R.layout.simple_list_item_1,
+                mGoogleApiClient, BOUNDS_JAMAICA, filter);
+
+
+        etOrigin = (AutoCompleteTextView)findViewById(R.id.origin);
+        etDestination = (AutoCompleteTextView) findViewById(R.id.destination);
+        imageRetry = (ImageView)findViewById(R.id.refreshIcon);
+        imageRetry.setClickable(true);
+
+        imageRetry.setVisibility(View.GONE);
+        imageRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageRetry.setVisibility(View.GONE);
+
+                //initTransactionLayout();
+            }
+        });
+
+
+
+        locationHelper=new LocationHelper(this);
+        locationHelper.checkpermission();
+
+
+        if (locationHelper.checkPlayServices()) {
+            // Building the GoogleApi client
+            locationHelper.buildGoogleApiClient();
+        }
+
+        mLastLocation=locationHelper.getLocation();
+
+        center = CameraUpdateFactory.newLatLng(new LatLng(18.013610, -77.498803));
+        zoom = CameraUpdateFactory.zoomTo(16);
+
+        etOrigin.setAdapter(mAdapter);
+        etDestination.setAdapter(mAdapter);
+
+        etOrigin.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                final PlaceAutoCompleteAdapter.PlaceAutocomplete item = mAdapter.getItem(position);
+                final String placeId = String.valueOf(item.placeId);
+                // Log.i(LOG_TAG, "Autocomplete item selected: " + item.description);
+
+            /*
+             Issue a request to the Places Geo Data API to retrieve a Place object with additional
+              details about the place.
+              */
+                PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi
+                        .getPlaceById(mGoogleApiClient, placeId);
+                placeResult.setResultCallback(new ResultCallback<PlaceBuffer>() {
+                    @Override
+                    public void onResult(PlaceBuffer places) {
+                        if (!places.getStatus().isSuccess()) {
+                            places.release();
+                            return;
+                        }
+                        // Get the Place object from the buffer.
+                        final Place place = places.get(0);
+                        start=place.getLatLng();
+                        originMarker = new MarkerOptions();
+                        originMarker.position(start);
+                        originMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                        map.addMarker(originMarker);
+
+                        if(!etOrigin.getText().toString().trim().isEmpty()
+                                && !etDestination.getText().toString().trim().isEmpty()){
+                            if (Utils.Operations.isOnline(HomePage.this)) {
+                                route();
+
+                                pDialog.dismiss();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                       // initTransactionLayout();
+                                    }
+                                },7000 );
+
+                            } else {
+                                pDialog.dismiss();
+                                MDToast.makeText(HomePage.this, "No Internet Connectivity",
+                                        MDToast.LENGTH_SHORT, MDToast.TYPE_INFO).show();
+                            }
+
+                        }
+                    }
+                });
+
+            }
+        });
+
+        etDestination.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                final PlaceAutoCompleteAdapter.PlaceAutocomplete item = mAdapter.getItem(position);
+                final String placeId = String.valueOf(item.placeId);
+
+                // Log.i(LOG_TAG, "Autocomplete item selected: " + item.description);
+
+                PendingResult<PlaceBuffer> placeResult = Places.GeoDataApi
+                        .getPlaceById(mGoogleApiClient, placeId);
+                placeResult.setResultCallback(new ResultCallback<PlaceBuffer>() {
+                    @Override
+                    public void onResult(PlaceBuffer places) {
+                        if (!places.getStatus().isSuccess()) {
+                            pDialog.dismiss();
+                            places.release();
+                            return;
+                        }
+
+                        final Place place = places.get(0);
+                        end=place.getLatLng();
+                        destinationMarker = new MarkerOptions();
+                        destinationMarker.position(end);
+                        destinationMarker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                        map.addMarker(destinationMarker);
+
+                        if(!etOrigin.getText().toString().trim().isEmpty()
+                                && !etDestination.getText().toString().trim().isEmpty()){
+                            if (Utils.Operations.isOnline(HomePage.this)) {
+                                route();
+                                pDialog.dismiss();
+
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                       // initTransactionLayout();
+                                    }
+                                },7000 );
+                            } else {
+                                pDialog.dismiss();
+                                MDToast.makeText(HomePage.this, "No Internet Connectivity",
+                                        MDToast.LENGTH_SHORT, MDToast.TYPE_INFO).show();
+                            }
+
+
+                        }
+
+                    }
+                });
+
+            }
+        });
+
+
+         /*
+        These text watchers set the start and end points to null because once there's
+        * a change after a value has been selected from the dropdown
+        * then the value has to reselected from dropdown to get
+        * the correct location.
+        * */
+        etOrigin.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int startNum, int before, int count) {
+                if (start != null) {
+                    start = null;
+                }
+                imageRetry.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        etDestination.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                if(end!=null)
+                {
+                    end=null;
+                }
+                imageRetry.setVisibility(View.GONE);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
         drawerImage = findViewById(R.id.imageDrawer);
@@ -228,6 +428,124 @@ public class HomePage extends AppCompatActivity implements OnMapReadyCallback,
             }
         }, 2000);
     }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+        mLastLocation=locationHelper.getLocation();
+
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        locationHelper.connectApiClient();
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onRoutingFailure(RouteException e) {
+
+        // The Routing request failed
+        //  progressDialog.dismiss();
+        if(e != null) {
+            MDToast.makeText(this, "Error: " + e.getMessage(),    MDToast.TYPE_ERROR, MDToast.LENGTH_LONG
+            ).show();
+            //// Log.i("Yess", "Route Exception "+e.getMessage());
+        }else {
+            //  Toast.makeText(this, "Something went wrong, Try again", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(ArrayList<Route> route, int j) {
+
+        LatLngBounds.Builder builder =  LatLngBounds.builder();
+
+        if(polylines.size()>0) {
+            for (Polyline poly : polylines) {
+                poly.remove();
+            }
+        }
+
+        polylines = new ArrayList<>();
+        //add route(s) to the map.
+        for (int i = 0; i <route.size(); i++) {
+
+            //In case of more than 5 alternative routes
+            int colorIndex = i % COLORS.length;
+
+            PolylineOptions polyOptions = new PolylineOptions();
+            polyOptions.color(getResources().getColor(COLORS[colorIndex]));
+            polyOptions.width(10 + i * 3);
+            polyOptions.addAll(route.get(i).getPoints());
+            Polyline polyline = map.addPolyline(polyOptions);
+            polylines.add(polyline);
+        }
+
+
+        builder.include(originMarker.getPosition());
+        builder.include(destinationMarker.getPosition());
+
+        LatLngBounds bounds = builder.build();
+
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        int padding = (int) (width * 0.30); // offset from edges of the map 10% of screen
+
+        CameraUpdate center = CameraUpdateFactory.newLatLng(start);
+        CameraUpdate zoom = CameraUpdateFactory.newLatLngBounds(bounds, width, height, padding);
+
+        map.moveCamera(center);
+        map.animateCamera(zoom);
+
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                // toolbar.setVisibility(View.VISIBLE);
+                //slidingLayout.setPanelState(EXPANDED);
+//
+                return false;
+            }
+        });
+
+    }
+
+    @Override
+    public void onRoutingCancelled() {
+
+    }
+
+    public void route() {
+        pDialog.show();
+
+        Routing routing = new Routing.Builder()
+                .travelMode(AbstractRouting.TravelMode.DRIVING)
+                .withListener(this)
+                .alternativeRoutes(false)
+                .waypoints(start, end)
+                .build();
+        routing.execute();
+    }
+
+
+
 
 
 
@@ -309,23 +627,5 @@ public class HomePage extends AppCompatActivity implements OnMapReadyCallback,
         return true;
     }
 
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-           mLastLocation=locationHelper.getLocation();
-
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        locationHelper.connectApiClient();
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
 
 }
