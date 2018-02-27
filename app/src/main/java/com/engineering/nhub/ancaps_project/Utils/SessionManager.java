@@ -1,10 +1,10 @@
-package com.engineering.nhub.ancaps_project.utils;
+package com.engineering.nhub.ancaps_project.Utils;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.engineering.nhub.ancaps_project.Login;
+import com.engineering.nhub.ancaps_project.Activities.Login;
 
 import java.util.HashMap;
 

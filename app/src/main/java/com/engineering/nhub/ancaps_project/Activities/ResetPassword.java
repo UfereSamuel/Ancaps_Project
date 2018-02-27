@@ -1,9 +1,7 @@
-package com.engineering.nhub.ancaps_project;
+package com.engineering.nhub.ancaps_project.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import com.engineering.nhub.ancaps_project.R;
 
 import java.util.regex.Pattern;
 

@@ -1,17 +1,10 @@
-package com.engineering.nhub.ancaps_project.utils;
+package com.engineering.nhub.ancaps_project.Utils;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.TextView;
-
-import com.engineering.nhub.ancaps_project.R;
 
 /**
  * Created by samuel on 2/23/18.
